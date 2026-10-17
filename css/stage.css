@@ -1,0 +1,47 @@
+/* 3D product stage: pinned canvas, scroll chapters, part callouts */
+/* exploded product stage */
+.stage{position:relative;height:100vh;height:100svh;overflow:hidden;background:
+  linear-gradient(var(--ink-2) 1px,transparent 1px) 0 0/80px 80px,
+  linear-gradient(90deg,var(--ink-2) 1px,transparent 1px) 0 0/80px 80px,var(--ink)}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+/* chapters: text that slides in beside the model as you scroll */
+.chapters{position:absolute;inset:0;pointer-events:none}
+.chapters .wrap{position:relative;height:100%}
+.ch{position:absolute;top:140px;left:var(--gutter-l);width:min(440px,38vw);display:grid;gap:18px;align-content:start}
+.ch h2{font-size:clamp(30px,3.4vw,52px)}
+.ch p{color:var(--paper-rule);font-size:17px;line-height:1.55;max-width:42ch}
+.facts{display:flex;gap:32px;flex-wrap:wrap;border-top:1px solid var(--ink-3);padding-top:16px;font-family:var(--f-mono);font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:.05em}
+.facts b{display:block;font-family:var(--f-display);font-weight:300;font-size:32px;color:var(--paper);letter-spacing:-.03em;text-transform:none;font-variant-numeric:tabular-nums;margin-bottom:2px}
+.ch ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;font-family:var(--f-mono);font-size:12px;color:var(--paper-rule);border-top:1px solid var(--ink-3);padding-top:16px}
+.ch ol em{font-style:normal;color:var(--orange);margin-right:8px}
+.ch .btn{pointer-events:auto;justify-self:start}
+.ch:not(:first-child){visibility:hidden;opacity:0}
+@media (max-width:760px){
+  .ch{top:auto;bottom:92px;right:var(--gutter-r);width:auto;gap:10px}
+  .ch h2{font-size:26px}
+  .ch p{font-size:14px}
+  .facts{gap:20px;padding-top:10px}
+  .facts b{font-size:22px}
+}
+.stage-foot{position:absolute;bottom:28px;left:0;right:0;pointer-events:none}
+.stage-foot .wrap{display:flex;justify-content:space-between;align-items:end;gap:24px}
+.step{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--paper)}
+.step small{display:block;color:var(--mute);margin-bottom:6px}
+.bar{width:min(320px,40vw);height:2px;background:var(--ink-3);position:relative}
+.bar i{position:absolute;inset:0;background:var(--orange);transform-origin:left;transform:scaleX(0)}
+.loading{position:absolute;inset:0;display:grid;place-content:center;font-family:var(--f-mono);font-size:12px;color:var(--mute);letter-spacing:.1em;transition:opacity .4s}
+.callout{position:absolute;left:0;top:0;pointer-events:none;opacity:0;will-change:transform;font-family:var(--f-mono);font-size:12px;letter-spacing:.04em}
+.callout::before{content:"";position:absolute;left:-4px;top:-4px;width:8px;height:8px;background:var(--orange)}
+.callout::after{content:"";position:absolute;left:4px;top:0;width:36px;height:1px;background:var(--orange)}
+.callout span{position:absolute;left:46px;top:-9px;white-space:nowrap;color:var(--paper)}
+.callout em{font-style:normal;color:var(--orange);margin-right:8px}
+.callout small{display:block;color:var(--mute);font-size:11px;margin-top:2px}
+.callout.flip::after{left:auto;right:4px}
+.callout.flip span{left:auto;right:46px;text-align:right}
+.callout.flip em{margin:0 0 0 8px;float:right}
+@media (max-width:900px){
+  .callout span{font-size:0}
+  .callout em{font-size:12px;margin:0}
+  .callout.flip em{margin:0}
+  .callout::after{width:18px}.callout span{left:26px}.callout.flip span{right:26px}
+}

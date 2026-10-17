@@ -1,0 +1,53 @@
+/* Netform — base: design tokens, type, buttons, header.
+   SSTR-style banded page: dark and light-grey bands alternate, thin rules divide cells. */
+:root{
+  --ink:#0c0c0c;        /* darkest band */
+  --ink-2:#18191b;      /* raised dark band */
+  --ink-3:#2f3032;      /* rules on dark */
+  --paper:#eff0f1;      /* light band */
+  --paper-rule:#c3c4c8; /* rules on light */
+  --mute:#747576;       /* secondary text */
+  --orange:#fe5b2a;     /* brand accent */
+  --orange-d:#e75326;
+  --f-display:"Hanken Grotesk", "Helvetica Neue", Arial, sans-serif; /* stand-in for ABC Monument Grotesk */
+  --f-body:"Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --gutter-l:max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r:max(16px, env(safe-area-inset-right, 0px));
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--f-body);font-size:16px;line-height:1.5;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--ink)}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;text-transform:uppercase;letter-spacing:-.035em;line-height:1.02;margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+.wrap{max-width:1360px;margin:0 auto;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
+.tag{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.tag::before{content:"[ "}.tag::after{content:" ]"}
+.light{background:var(--paper);color:var(--ink);color-scheme:light}
+.light .tag{color:var(--mute)}
+
+/* orange button with cut corners */
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--orange);color:var(--ink);text-decoration:none;
+  font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:16px 26px;border:0;cursor:pointer;
+  clip-path:polygon(9px 0,calc(100% - 9px) 0,100% 9px,100% calc(100% - 9px),calc(100% - 9px) 100%,9px 100%,0 calc(100% - 9px),0 9px);
+  transition:background .2s}
+.btn:hover{background:var(--orange-d)}
+.btn:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+.btn .arr{font-family:var(--f-body);font-size:15px;line-height:1}
+.link{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
+
+/* header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(12,12,12,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--ink-3)}
+.hdr{display:grid;grid-template-columns:auto 1fr auto auto;align-items:stretch;height:64px}
+.hdr>*{display:flex;align-items:center;padding:0 20px;border-right:1px solid var(--ink-3)}
+.hdr>*:first-child{padding-left:0}.hdr>*:last-child{border-right:0;padding-right:0}
+.logo{gap:10px;font-family:var(--f-display);font-size:22px;letter-spacing:-.02em;text-decoration:none;font-weight:500}
+.logo i{width:22px;height:22px;border:2px solid var(--paper);display:grid;place-items:center}
+.logo i::after{content:"";width:6px;height:10px;background:var(--orange)}
+nav ul{list-style:none;display:flex;gap:28px;margin:0;padding:0}
+nav a{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--paper-rule)}
+nav a:hover{color:var(--paper)}
+.lang{font-family:var(--f-mono);font-size:12px;color:var(--mute)}.lang b{color:var(--paper);font-weight:400}
+.hdr .contact{font-family:var(--f-mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em;text-decoration:none}
